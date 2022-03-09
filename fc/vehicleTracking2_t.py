@@ -874,6 +874,11 @@ class PTZTracking:
             boxes, confidences, classIDs = self.runDetection(fr, logname, self.frame, self.predictor)
             boxes, confidences, classIDs = self.multiClassNMS(logname, boxes, confidences, classIDs, vis)
             t2 = time.time()
+            t3 = time.time()
+            t4 = time.time()
+            t5 = time.time()
+            t6 = time.time()
+            t7 = time.time()
 
             takipEdiciler, dlibKorelasyonTakipEdici, notNull = self.trackDetections(self.frame, boxes, classIDs, self.roiPts) 
             if notNull:
