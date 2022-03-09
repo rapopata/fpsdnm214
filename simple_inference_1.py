@@ -58,7 +58,8 @@ while True:
 
   t2 = time.time()
   ttext = 'Frame - ' + str(fr) + ', time = ' + str(t2-t1) + "\n"
-  print(ttext)
+  if fr%10 == 0:
+    print(ttext)
   with open(logname, "a") as logtxt:
     logtxt.write(ttext)
   
