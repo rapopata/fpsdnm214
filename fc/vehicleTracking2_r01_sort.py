@@ -12,6 +12,7 @@ import time
 
 from detectron2.config import get_cfg
 from detectron2.engine import DefaultPredictor
+from detectron2 import model_zoo
 
 from kutlemerkezitakip import KutleMerkeziTakipClass
 from takipedilenarac import TakipEdilenAracClass
@@ -29,7 +30,7 @@ def parseArgs():
         '--cfg',
         dest='config',
         help='cfg model file (/path/to/model_config.yaml)',
-        default="/home/acun/Documents/detectron2/configs/COCO-Detection/retinanet_R_101_FPN_3x.yaml",
+        default=model_zoo.get_config_file("COCO-Detection/retinanet_R_101_FPN_3x.yaml"),
         type=str
     )
     parser.add_argument(
