@@ -6,7 +6,6 @@ import cv2
 import sys
 import datetime
 from datetime import timedelta
-import imutils
 import dlib
 import math
 import time
@@ -337,8 +336,7 @@ class PTZTracking:
         # Girilen input videosunu okur ve gerekli bilgileri elde
         self.vid = cv2.VideoCapture(input)
         try:
-            prop = cv2.cv.CV_CAP_PROP_FRAME_COUNT if imutils.is_cv2() \
-                else cv2.CAP_PROP_FRAME_COUNT
+            prop = cv2.CAP_PROP_FRAME_COUNT
             total = int(self.vid.get(prop))
             print("[INFO] {} total frames in video".format(total))
             self.W  = int(self.vid.get(cv2.CAP_PROP_FRAME_WIDTH))
