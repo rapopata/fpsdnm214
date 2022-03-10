@@ -21,7 +21,7 @@ import requests
 import io
 import matplotlib.pyplot as plt
 
-from sort_wc import *
+from sort_wc_nd import *
 
 ## example usage -- python3 vehicleTracking2.py --cfg /home/acun/Documents/detectron2/configs/COCO-Detection/retinanet_R_101_FPN_3x.yaml --wts ptzModelOutputs_HalfRes_HalfAnchor/model_0124395.pth --input test.avi --output qwe3.avi
 def parseArgs():
