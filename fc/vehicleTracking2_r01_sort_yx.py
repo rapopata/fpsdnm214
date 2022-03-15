@@ -6,7 +6,6 @@ import cv2
 import sys
 import datetime
 from datetime import timedelta
-import dlib
 import math
 import time
 
@@ -691,33 +690,14 @@ class PTZTracking:
                 color = (50,0,200)
                 text = "id=" + str(Sort_indexIDs[i]) + ",cls=" + str(Sort_c[i])
                 i += 1
-                cv2.rectangle(self.copyFrame, (x, y), (w, h), color, 3)
-                cv2.putText(self.copyFrame, text, (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 4)
+                cv2.rectangle(self.copyFrame, (x, y), (w, h), color, 2)
+                cv2.putText(self.copyFrame, text, (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 0.8, color, 2)
         else:
             notNull = False
             self.mot_memory = previous
         
         return tracks, notNull
 
-        dlibpast = dlib.correlation_tracker()
-        for bb in boxes:
-            x, y = bb[0], bb[1]
-            w, h = bb[2], bb[3]
-            isInPolygon = cv2.pointPolygonTest(roiPts, (int(x+w/2),int(y+h/2)), False)
-            if isInPolygon<1: continue
-        
-            bbox = [int(x), int(y), int(x+w), int(y+h)]
-            dlibKorelasyonTakipEdici = dlib.correlation_tracker()
-            classID = 1 # classIDs[i]
-            dikdortgen = dlib.rectangle(bbox[0], bbox[1], bbox[2], bbox[3])
-            dlibKorelasyonTakipEdici.start_track(frame, dikdortgen)
-            takipEdiciler.append([dlibKorelasyonTakipEdici, classID])       ## tracker
-            notNull = True
-        if len(takipEdiciler) == 0:
-            dlibKorelasyonTakipEdici = dlibpast                     ## tracker - classes
-            notNull = False
-        return takipEdiciler, dlibKorelasyonTakipEdici, notNull       
-    
     #def updateTrackPoss(self, frame, takipEdiciler, dlibKorelasyonTakipEdici):
     def updateTrackPoss(self, frame, tracks):
         Sort_dikdortgenler = []
@@ -819,7 +799,6 @@ class PTZTracking:
         onetime=False
 
         exp = get_exp(None, args.xname)
-        fasf = args.httppost
 
         device = "gpu"
         exp.test_conf = args.confidence
